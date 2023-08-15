@@ -1,27 +1,48 @@
 import RestaurantCard from "./RestaurantCard";
-import restaurantList from "./RestaurantList";
-import { useState } from "react";
+// import restaurantList from "./RestaurantList";
+import { useState, useEffect } from "react";
 
-const filterResults = (searchtext, restaurantList) => {
-  const results = restaurantList.filter((item) =>
-    item.data.name.includes(searchtext)
-  );
-  return results;
-};
 
-const filterByRating = (restautrantList) => {
-  const ratedrestaurants = restautrantList.filter(
-    (item) => item.data.avgRating > "4.0"
-  );
-  return ratedrestaurants;
-};
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
-  const [restaurant, setrestaurant] = useState(restaurantList);
+  const [restaurantData, setrestaurantData] = useState([]);
+  //console.log(restaurantList, "mockData");
   // console.log(restaurant, "vignesh123");
-
   // const [searchClicked,setSearchClicked]=useState('True');
+
+  useEffect(() => {
+    fetchCall();
+  },[]);
+
+  const fetchCall = async () =>{
+    // const url = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.034672&lng=77.039611&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+    const response = await fetch ("https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.034672&lng=77.039611&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    console.log(response, 'MapIT1');
+    const json = await response.json();
+    console.log(json, 'MapIT2');
+    const final = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    setrestaurantData(final);
+    // const dataToMap = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    // console.log(dataToMap, 'apiresponse');
+    //setrestaurantData(final.restaurants);
+    console.log(final, 'MapIT');
+
+  }
+
+  const filterResults = (searchtext, restaurantList) => {
+    const results = restaurantList.filter((item) =>
+      item.info.name.includes(searchtext)
+    );
+    return results;
+  };
+  
+  const filterByRating = (restautrantList) => {
+    const ratedrestaurants = restautrantList.filter(
+      (item) => item.info.avgRating > "4.0"
+    );
+    return ratedrestaurants;
+  };
 
   return (
     <div className="parent-div">
@@ -32,14 +53,14 @@ const Body = () => {
         value={searchText}
         onChange={(e) => {
           setSearchText(e.target.value);
-          console.log(searchText, "vignesh");
+          //console.log(searchText, "vignesh");
         }}
       />
       <button
         onClick={() => {
-          const result = filterResults(searchText, restaurant);
-          setrestaurant(result);
-          console.log(restaurant, "vignesh123");
+          const result = filterResults(searchText, restaurantData);
+          setrestaurantData(result);
+          console.log(restaurantData, "vignesh123");
         }}
       >
         Search
@@ -47,15 +68,16 @@ const Body = () => {
       &nbsp;
       <button
         onClick={() => {
-          const ratedrestaurants = filterByRating(restaurantList);
-          setrestaurant(ratedrestaurants);
+          const ratedrestaurants = filterByRating(restaurantData);
+          setrestaurantData(ratedrestaurants);
         }}
       >
         Restaurants above 4.0 rating
       </button>
+     { console.log(restaurantData, "final_check")}
       <div className="restaurant-list">
-        {restaurant.map((item) => {
-          return <RestaurantCard {...item.data} />;
+        {restaurantData.map((item) => {
+          return <RestaurantCard {...item.info} />;
         })}
       </div>
     </div>

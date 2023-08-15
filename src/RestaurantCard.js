@@ -1,15 +1,15 @@
-const RestaurantCard =({cloudinaryImageId,name,cuisines,costForTwoString,slaString })=>{
+const RestaurantCard =({cloudinaryImageId,name,costForTwo,areaName,sla})=>{
     // const { cloudinaryImageId,name,cuisines,costForTwoString,slaString } =restaurant.data; 
     // Line 2 is destructuring the props from "restaurant" object
     return(
         <div className="restaurant-card">
-<img src={"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/"
+<img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
 + cloudinaryImageId} alt="Biriyani Bowl" />
 <h3>{name}</h3>
-<h6>Will be delivered in {slaString}</h6>
-<h6>{cuisines.join(',' )}</h6>
-<h6>Costs {costForTwoString}</h6>
-        </div>
+<h6>Located at {areaName}</h6>
+<h6>Costs {costForTwo}</h6>
+<h6>Will reach you in {sla.slaString}</h6>
+</div>
     )
 }
 
