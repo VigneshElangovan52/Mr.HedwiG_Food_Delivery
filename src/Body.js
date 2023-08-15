@@ -2,18 +2,24 @@ import RestaurantCard from "./RestaurantCard";
 import restaurantList from "./RestaurantList";
 import { useState } from "react";
 
-function filterdata(searchText, restaurantList) {
-  const filterresult = restaurantList.filter((restaurant) =>
-  restaurant.data.name.includes(filterresult)
+const filterResults = (searchtext, restaurantList) => {
+  const results = restaurantList.filter((item) =>
+    item.data.name.includes(searchtext)
   );
-  return filterresult;
-}
+  return results;
+};
+
+const filterByRating = (restautrantList) => {
+  const ratedrestaurants = restautrantList.filter(
+    (item) => item.data.avgRating > "4.0"
+  );
+  return ratedrestaurants;
+};
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
-  const [filteredRestaurants, setFilteredRestaurants] =
-    useState(restaurantList);
-    console.log(filteredRestaurants,'vignesh123');
+  const [restaurant, setrestaurant] = useState(restaurantList);
+  // console.log(restaurant, "vignesh123");
 
   // const [searchClicked,setSearchClicked]=useState('True');
 
@@ -26,21 +32,30 @@ const Body = () => {
         value={searchText}
         onChange={(e) => {
           setSearchText(e.target.value);
-          // console.log(e.target.value);
+          console.log(searchText, "vignesh");
         }}
       />
       <button
         onClick={() => {
-          const result = filterdata(searchText,filteredRestaurants);
-          
-          setFilteredRestaurants(result);
+          const result = filterResults(searchText, restaurant);
+          setrestaurant(result);
+          console.log(restaurant, "vignesh123");
         }}
       >
         Search
+      </button>{" "}
+      &nbsp;
+      <button
+        onClick={() => {
+          const ratedrestaurants = filterByRating(restaurantList);
+          setrestaurant(ratedrestaurants);
+        }}
+      >
+        Restaurants above 4.0 rating
       </button>
       <div className="restaurant-list">
-        {restaurantList.map((ingaennavenumnakudukalam) => {
-          return <RestaurantCard {...ingaennavenumnakudukalam.data} />;
+        {restaurant.map((item) => {
+          return <RestaurantCard {...item.data} />;
         })}
       </div>
     </div>
