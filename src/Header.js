@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+
 const AppName = () => {
   return (
     <div>
@@ -16,15 +20,23 @@ const AppName = () => {
 };
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState ("Log In");
+
+  const LogInStatus = () => {
+    (isLoggedIn === "Log In") ? 
+    setIsLoggedIn ("Log Out") : setIsLoggedIn ("Log In");
+  }
+
   return (
     <div className="header">
       <AppName />
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact Us</li>
+          <li><Link to = "/">Home</Link></li>
+          <li><Link to = "/about">About</Link></li>
+          <li><Link to = "/contact">Contact Us</Link></li>
           <li>Cart</li>
+          <button onClick = {LogInStatus}>{isLoggedIn}</button>
         </ul>
       </div>
     </div>

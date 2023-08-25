@@ -17,6 +17,12 @@
 padding: 20px;
 }
 
+.nav-items > button{
+  margin: 5px;
+  list-style-type: none;
+  display: flex;
+}
+
 .logo{
   margin: 5px;
   width: 70px;

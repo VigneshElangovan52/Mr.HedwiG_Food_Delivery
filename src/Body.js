@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [restaurantData, setrestaurantData] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState ([]);
   //console.log(restaurantList, "mockData");
   // console.log(restaurant, "vignesh123");
   // const [searchClicked,setSearchClicked]=useState('True');
@@ -18,21 +19,22 @@ const Body = () => {
   const fetchCall = async () =>{
     // const url = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.034672&lng=77.039611&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
     const response = await fetch ("https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.034672&lng=77.039611&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-    console.log(response, 'MapIT1');
+    //console.log(response, 'MapIT1');
     const json = await response.json();
-    console.log(json, 'MapIT2');
+    //console.log(json, 'MapIT2');
     const final = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setrestaurantData(final);
+    setFilteredRestaurants(final);
     // const dataToMap = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     // console.log(dataToMap, 'apiresponse');
     //setrestaurantData(final.restaurants);
-    console.log(final, 'MapIT');
+    //console.log(final, 'MapIT');
 
   }
 
   const filterResults = (searchtext, restaurantList) => {
     const results = restaurantList.filter((item) =>
-      item.info.name.includes(searchtext)
+      item.info.name.toLowerCase().includes(searchtext.toLowerCase())
     );
     return results;
   };
@@ -59,8 +61,7 @@ const Body = () => {
       <button
         onClick={() => {
           const result = filterResults(searchText, restaurantData);
-          setrestaurantData(result);
-          console.log(restaurantData, "vignesh123");
+          setFilteredRestaurants(result);
         }}
       >
         Search
@@ -69,14 +70,13 @@ const Body = () => {
       <button
         onClick={() => {
           const ratedrestaurants = filterByRating(restaurantData);
-          setrestaurantData(ratedrestaurants);
+          setFilteredRestaurants(ratedrestaurants);
         }}
       >
         Restaurants above 4.0 rating
       </button>
-     { console.log(restaurantData, "final_check")}
       <div className="restaurant-list">
-        {restaurantData.map((item) => {
+        {filteredRestaurants.map((item) => {
           return <RestaurantCard {...item.info} />;
         })}
       </div>
