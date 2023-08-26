@@ -1,6 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
 // import restaurantList from "./RestaurantList";
 import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 
 
@@ -28,7 +30,7 @@ const Body = () => {
     // const dataToMap = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     // console.log(dataToMap, 'apiresponse');
     //setrestaurantData(final.restaurants);
-    //console.log(final, 'MapIT');
+    console.log(final, 'MapIT');
 
   }
 
@@ -45,6 +47,10 @@ const Body = () => {
     );
     return ratedrestaurants;
   };
+  
+  if(filteredRestaurants.length === 0) return <Shimmer />;
+
+  // const {id} = filteredRestaurants?.info;
 
   return (
     <div className="parent-div">
@@ -77,7 +83,7 @@ const Body = () => {
       </button>
       <div className="restaurant-list">
         {filteredRestaurants.map((item) => {
-          return <RestaurantCard {...item.info} />;
+          return <Link key = {item.info.id} to={"/restaurant/"+item.info.id}><RestaurantCard {...item.info} /></Link>;
         })}
       </div>
     </div>
