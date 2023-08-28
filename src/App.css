@@ -76,3 +76,8 @@ flex-wrap: wrap;
 .parent-div{
   background-color: #f0f0f0;
 }
+
+.user-class-div{
+  padding: 5px;
+  border: 1px solid black;
+}
