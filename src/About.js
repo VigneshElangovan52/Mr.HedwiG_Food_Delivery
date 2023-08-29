@@ -13,7 +13,7 @@ We take pride in our seamless user experience. Our user-friendly app is designed
 Quality and freshness are paramount to us. We collaborate with esteemed restaurants, ensuring that every dish retains its authentic flavors and is delivered to you piping hot. Our commitment to excellence extends beyond food – we also provide top-notch customer support, addressing any concerns promptly.
 
 Whether you're a busy professional, a food enthusiast, or simply seeking convenience, Mr.Foody is here to redefine how you experience food. Join us in our flavorful expedition and let Mr.Foody be your partner in culinary exploration. Your satisfaction is our success, and we're thrilled to embark on this gastronomic journey with you.</p>
-        <UserClass name={"Vignesh Elangovan"} contact={"7894561230/ qwerty@gmail.com"} location={"Chennai"}/>
+        <UserClass />
         </div>
     );
 };
