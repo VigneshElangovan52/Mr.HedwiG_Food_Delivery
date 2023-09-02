@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 
+
+
 const RestaurantMenu = () => {
-    
-    const {restaurantid} = useParams();
-    console.log(restaurantid, "vignesh");
+  const { restaurantid } = useParams();
 
-  const [restaurantInfo, setRestaurantInfo] = useState(null);
+  const restaurantInfo = useRestaurantMenu(restaurantid);
 
-  useEffect(() => {
-    fetchRestaurantMenu();
-  }, []);
+  //**Line 17-28 is optimized by using the custom Hook useRestaurantMenu() which takes care of the responsibility of getting the restaurant menu list*/
 
-  const fetchRestaurantMenu = async () => {
-    const MENU_URL =
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.034672&lng=77.039611&restaurantId=";
-    const response = await fetch(MENU_URL + restaurantid);
-    const data = await response.json();
-    console.log(data, "123");
-    setRestaurantInfo(data);
-  };
+  // const [restaurantInfo, setRestaurantInfo] = useState(null);
+  // useEffect(() => {
+  //   fetchRestaurantMenu();
+  // }, []);
+  // const fetchRestaurantMenu = async () => {
+  //   const response = await fetch(MENU_URL + restaurantid);
+  //   const data = await response.json();
+  //   console.log(data, "123");
+  //   setRestaurantInfo(data);
+  // };
 
   if (restaurantInfo === null) return <Shimmer />;
 
@@ -46,7 +46,8 @@ const RestaurantMenu = () => {
       <ul>
         {itemCards.map((item) => (
           <li key={item.card.info.id}>
-            {item.card.info.name.toUpperCase()}-{"Rs."}{item.card.info.price / 100}
+            {item.card.info.name.toUpperCase()}-{"Rs."}
+            {item.card.info.price / 100}
           </li>
         ))}
       </ul>

@@ -4,12 +4,12 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import AppLayout from './App';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import About from './About';
-import Error from './Error';
-import Contact from './contact';
-import Cart from './Cart';
-import Body from './Body';
-import RestaurantMenu from './RestaurantMenu';
+import About from './components/About';
+import Error from './components/Error';
+import Contact from './components/contact';
+import Cart from './components/Cart';
+import Body from './components/Body';
+import RestaurantMenu from './components/RestaurantMenu';
 
 
 const Routes = createBrowserRouter ([

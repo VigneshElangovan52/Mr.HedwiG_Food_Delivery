@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 
 
@@ -13,6 +14,8 @@ const Body = () => {
   //console.log(restaurantList, "mockData");
   // console.log(restaurant, "vignesh123");
   // const [searchClicked,setSearchClicked]=useState('True');
+
+  const userStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchCall();
@@ -47,6 +50,8 @@ const Body = () => {
     );
     return ratedrestaurants;
   };
+
+  if (userStatus === false) return <h1>Oops, seems like you're disconneted! Please check internet connectivity</h1>;
   
   if(filteredRestaurants.length === 0) return <Shimmer />;
 
