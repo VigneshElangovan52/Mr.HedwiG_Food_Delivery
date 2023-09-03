@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { lazy, Suspense} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import AppLayout from './App';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import About from './components/About';
+//import About from './components/About';
 import Error from './components/Error';
 import Contact from './components/contact';
 import Cart from './components/Cart';
 import Body from './components/Body';
 import RestaurantMenu from './components/RestaurantMenu';
+import Shimmer from './components/Shimmer';
+//import Instamart from './components/Instamart';
 
+const Instamart = lazy(()=>import ('./components/Instamart'));
+const About = lazy(()=>import ('./components/About'));
 
 const Routes = createBrowserRouter ([
   {
@@ -26,7 +30,7 @@ const Routes = createBrowserRouter ([
   },
   {
       path: "/about",
-      element: <About />
+      element: <Suspense fallback = {<Shimmer/>} ><About /></Suspense>
     },
     {
       path: "/contact",
@@ -37,9 +41,14 @@ const Routes = createBrowserRouter ([
       element: <Cart />
     },
     {
+      path: "/instamart",
+      element: <Suspense fallback = {<Shimmer />}><Instamart /></Suspense>
+    },
+    {
       path: "/restaurant/:restaurantid",
       element: <RestaurantMenu />
-    }],
+    }
+ ],
     errorElement: <Error />
   }
 ]);
