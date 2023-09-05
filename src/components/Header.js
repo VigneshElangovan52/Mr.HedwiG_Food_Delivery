@@ -28,7 +28,7 @@ const Header = () => {
   const userStatus = useOnlineStatus();
 
   return (
-    <div className="header">
+    <div className="flex">
       <AppName />
       <div className="nav-items">
         <ul>
