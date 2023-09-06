@@ -27,7 +27,7 @@ const Body = () => {
     //console.log(response, 'MapIT1');
     const json = await response.json();
     //console.log(json, 'MapIT2');
-    const final = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    const final = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setrestaurantData(final);
     setFilteredRestaurants(final);
     // const dataToMap = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
