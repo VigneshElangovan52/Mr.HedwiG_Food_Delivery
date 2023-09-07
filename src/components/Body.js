@@ -58,11 +58,11 @@ const Body = () => {
   // const {id} = filteredRestaurants?.info;
 
   return (
-    <div className="parent-div">
+    <div className="parent-div my-2">
       <input
         type="search"
-        placeholder="Search for a restaurant"
-        className="search-bar"
+        placeholder=" Search for a restaurant "
+        className="mx-4 my-2 border border-solid border-black"
         value={searchText}
         onChange={(e) => {
           setSearchText(e.target.value);
@@ -70,6 +70,7 @@ const Body = () => {
         }}
       />
       <button
+        className="bg-green-300 border hover:bg-gray-300 border-solid border-black rounded-md px-2"
         onClick={() => {
           const result = filterResults(searchText, restaurantData);
           setFilteredRestaurants(result);
@@ -78,7 +79,7 @@ const Body = () => {
         Search
       </button>{" "}
       &nbsp;
-      <button
+      <button className="bg-stone-400 hover:bg-slate-300 border border-solid border-black rounded-md px-2"
         onClick={() => {
           const ratedrestaurants = filterByRating(restaurantData);
           setFilteredRestaurants(ratedrestaurants);
@@ -86,7 +87,7 @@ const Body = () => {
       >
         Restaurants above 4.0 rating
       </button>
-      <div className="restaurant-list">
+      <div className="flex flex-wrap">
         {filteredRestaurants.map((item) => {
           return <Link key = {item.info.id} to={"/restaurant/"+item.info.id}><RestaurantCard {...item.info} /></Link>;
         })}
