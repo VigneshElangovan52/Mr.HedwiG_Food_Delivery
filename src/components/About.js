@@ -2,7 +2,7 @@ import UserClass from "./UserClass";
 
 const About = () => {
     return (
-        <div>
+        <div className="bg-gray-100 my-4 p-2 border border-solid border-gray-200  h-60 rounded-lg hover:bg-gray-200">
             <h1>**About Us: Mr.Foody - Your Culinary Companion**</h1>
             <p>At Mr.Foody, we are more than just a food delivery application; we are your ultimate culinary companion, dedicated to satisfying your cravings and bringing delectable experiences to your doorstep. 
 
