@@ -14,3 +14,16 @@ const RestaurantCard =({cloudinaryImageId,name,costForTwo,areaName,sla})=>{
 }
 
 export default RestaurantCard;
+
+//Higher Order Components take an component as parameter, and returns another component which is enhanced/manipulated
+
+export const isPromoted = (RestaurantCard) =>{
+    return ((props)=>{
+        return(
+        <div>
+            <label className="absolute bg-black text-white rounded-md">Promoted</label>
+            <RestaurantCard {...props}/>
+        </div>
+        )
+    })
+}

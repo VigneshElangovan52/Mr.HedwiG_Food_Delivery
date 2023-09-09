@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {isPromoted} from "./RestaurantCard";
 // import restaurantList from "./RestaurantList";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -51,6 +51,8 @@ const Body = () => {
     return ratedrestaurants;
   };
 
+  const PromotedRestaurant = isPromoted(RestaurantCard);
+
   if (userStatus === false) return <h1>Oops, seems like you're disconneted! Please check internet connectivity</h1>;
   
   if(filteredRestaurants.length === 0) return <Shimmer />;
@@ -89,7 +91,9 @@ const Body = () => {
       </button>
       <div className="flex flex-wrap">
         {filteredRestaurants.map((item) => {
-          return <Link key = {item.info.id} to={"/restaurant/"+item.info.id}><RestaurantCard {...item.info} /></Link>;
+          return <Link key = {item.info.id} to= {"/restaurant/"+ item.info.id}>
+            {(item.info.avgRating > "4.0") ? <PromotedRestaurant {...item.info}/> : <RestaurantCard {...item.info} />}
+            </Link>;
         })}
       </div>
     </div>
