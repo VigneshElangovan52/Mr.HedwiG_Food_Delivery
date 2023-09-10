@@ -72,7 +72,7 @@ const Body = () => {
         }}
       />
       <button
-        className="bg-green-300 border hover:bg-gray-300 border-solid border-black rounded-md px-2"
+        className="bg-stone-400 border hover:bg-gray-300 border-solid border-black rounded-md px-2"
         onClick={() => {
           const result = filterResults(searchText, restaurantData);
           setFilteredRestaurants(result);

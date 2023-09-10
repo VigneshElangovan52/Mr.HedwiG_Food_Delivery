@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 const AppLayout =()=>{
     return(
-      <div className='parent-div'>
+      <div className='bg-green-300'>
         <Header />
       <Outlet />
       </div>
