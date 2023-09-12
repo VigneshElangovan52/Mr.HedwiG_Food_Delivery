@@ -28,26 +28,28 @@ const RestaurantMenu = () => {
     restaurantInfo?.data?.cards[0]?.card?.card?.info;
   const { lastMileTravelString } =
     restaurantInfo?.data?.cards[0]?.card?.card?.info?.sla;
-  const { itemCards } =
-    restaurantInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]
-      ?.card?.card;
-  console.log(itemCards);
+  // const { itemCards } =
+  //   restaurantInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]
+  //     ?.card?.card;
+      const category = restaurantInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(data=>data?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+  console.log(category);
 
   return (
     <div>
-      <h1>{name}</h1>
+      <div className="my-4 p-2 border border-solid border-gray-500 rounded-lg">
+      <h1 className="font-bold text-2xl text-left my-5">{name}</h1>
       <h4>{cuisines.join(",")}</h4>
       <h5>
         {locality}, {lastMileTravelString}
       </h5>
       <h5>Rated {avgRatingString}</h5>
+      </div>
       {/**Doubt: How to destructure the object  restaurantInfo?.data?.cards[0]?.card?.card?.info.name to name only, so that we can use {name} to bind*/}
       {/*UPDATE-Sorted it later*/}
       <ul>
-        {itemCards.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name.toUpperCase()}-{"Rs."}
-            {item.card.info.price / 100}
+        {category.map((item) => (
+          <li className="text-left py-5 text- my-2 border border-solid border-gray-500 rounded-lg font-serif font-bold">
+            {item.card.card.title}
           </li>
         ))}
       </ul>
