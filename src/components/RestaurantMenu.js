@@ -1,4 +1,5 @@
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 
@@ -35,24 +36,16 @@ const RestaurantMenu = () => {
   console.log(category);
 
   return (
-    <div>
-      <div className="my-4 p-2 border border-solid border-gray-500 rounded-lg">
-      <h1 className="font-bold text-2xl text-left my-5">{name}</h1>
-      <h4>{cuisines.join(",")}</h4>
-      <h5>
-        {locality}, {lastMileTravelString}
-      </h5>
-      <h5>Rated {avgRatingString}</h5>
+    <div className="text-center">
+      <div className="my-4 p-2 rounded-lg">
+      <h1 className="font-bold text-2xl my-3">{name}</h1>
+      <p className="font-medium">{cuisines.join(",")} | {locality}, {lastMileTravelString} | Rated {avgRatingString}</p>
       </div>
       {/**Doubt: How to destructure the object  restaurantInfo?.data?.cards[0]?.card?.card?.info.name to name only, so that we can use {name} to bind*/}
       {/*UPDATE-Sorted it later*/}
-      <ul>
-        {category.map((item) => (
-          <li className="text-left py-5 text- my-2 border border-solid border-gray-500 rounded-lg font-serif font-bold">
-            {item.card.card.title}
-          </li>
+        {category.map((category) => (
+          <RestaurantCategory data = {category?.card?.card}/>
         ))}
-      </ul>
     </div>
   );
 };
