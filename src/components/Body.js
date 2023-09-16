@@ -64,7 +64,7 @@ const Body = () => {
       <input
         type="search"
         placeholder=" Search for a restaurant "
-        className="mx-4 my-2 border border-solid border-black"
+        className="mx-4 my-2 rounded-md border border-solid border-black"
         value={searchText}
         onChange={(e) => {
           setSearchText(e.target.value);
@@ -72,7 +72,7 @@ const Body = () => {
         }}
       />
       <button
-        className="bg-stone-400 border hover:bg-gray-300 border-solid border-black rounded-md px-2"
+        className="bg-stone-800 text-white border hover:bg-black border-solid border-black rounded-md px-2"
         onClick={() => {
           const result = filterResults(searchText, restaurantData);
           setFilteredRestaurants(result);
@@ -81,7 +81,7 @@ const Body = () => {
         Search
       </button>{" "}
       &nbsp;
-      <button className="bg-stone-400 hover:bg-slate-300 border border-solid border-black rounded-md px-2"
+      <button className="bg-stone-800 text-white hover:bg-black border border-solid border-black rounded-md px-2"
         onClick={() => {
           const ratedrestaurants = filterByRating(restaurantData);
           setFilteredRestaurants(ratedrestaurants);
