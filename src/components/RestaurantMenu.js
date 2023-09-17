@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import Shimmer from "./Shimmer";
@@ -7,8 +8,9 @@ import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
   const { restaurantid } = useParams();
-
   const restaurantInfo = useRestaurantMenu(restaurantid);
+
+  const [showItems] = useState(false);
 
   //**Line 17-28 is optimized by using the custom Hook useRestaurantMenu() which takes care of the responsibility of getting the restaurant menu list*/
 
@@ -44,7 +46,7 @@ const RestaurantMenu = () => {
       {/**Doubt: How to destructure the object  restaurantInfo?.data?.cards[0]?.card?.card?.info.name to name only, so that we can use {name} to bind*/}
       {/*UPDATE-Sorted it later*/}
         {category.map((category) => (
-          <RestaurantCategory data = {category?.card?.card}/>
+          <RestaurantCategory data = {category?.card?.card} showitems={showItems}/>
         ))}
     </div>
   );
