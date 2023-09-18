@@ -10,7 +10,7 @@ const RestaurantMenu = () => {
   const { restaurantid } = useParams();
   const restaurantInfo = useRestaurantMenu(restaurantid);
 
-  const [showItems] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   //**Line 17-28 is optimized by using the custom Hook useRestaurantMenu() which takes care of the responsibility of getting the restaurant menu list*/
 
@@ -40,14 +40,23 @@ const RestaurantMenu = () => {
   return (
     <div className="text-center">
       <div className="my-4 p-2 rounded-lg">
-      <h1 className="font-bold text-2xl my-3">{name}</h1>
-      <p className="font-medium">{cuisines.join(",")} | {locality}, {lastMileTravelString} | Rated {avgRatingString}</p>
+        <h1 className="font-bold text-2xl my-3">{name}</h1>
+        <p className="font-medium">
+          {cuisines.join(",")} | {locality}, {lastMileTravelString} | Rated{" "}
+          {avgRatingString}
+        </p>
       </div>
       {/**Doubt: How to destructure the object  restaurantInfo?.data?.cards[0]?.card?.card?.info.name to name only, so that we can use {name} to bind*/}
       {/*UPDATE-Sorted it later*/}
-        {category.map((category) => (
-          <RestaurantCategory data = {category?.card?.card} showitems={showItems}/>
-        ))}
+      {category.map((category, index) => (
+        <RestaurantCategory
+          data={category?.card?.card}
+          showItems={index === selectedIndex ? true : false}
+          setSelectedIndex={() => {
+            setSelectedIndex(index);
+          }}
+        />
+      ))}
     </div>
   );
 };
