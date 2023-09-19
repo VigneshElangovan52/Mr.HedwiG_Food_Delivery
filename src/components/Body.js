@@ -1,9 +1,10 @@
 import RestaurantCard, {isPromoted} from "./RestaurantCard";
 // import restaurantList from "./RestaurantList";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 
 
@@ -11,11 +12,14 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [restaurantData, setrestaurantData] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState ([]);
+  //const [userName, setUserName] = useState("");
   //console.log(restaurantList, "mockData");
   // console.log(restaurant, "vignesh123");
   // const [searchClicked,setSearchClicked]=useState('True');
 
   const userStatus = useOnlineStatus();
+
+  const {loggedInBy, setUser} = useContext(UserContext);
 
   useEffect(() => {
     fetchCall();
@@ -53,7 +57,7 @@ const Body = () => {
 
   const PromotedRestaurant = isPromoted(RestaurantCard);
 
-  if (userStatus === false) return <h1>Oops, seems like you're disconneted! Please check internet connectivity</h1>;
+  if (userStatus === false) return <h1>Oops, seems like you're disconnected! Please check internet connectivity</h1>;
   
   if(filteredRestaurants.length === 0) return <Shimmer />;
 
@@ -64,7 +68,7 @@ const Body = () => {
       <input
         type="search"
         placeholder=" Search for a restaurant "
-        className="mx-4 my-2 rounded-md border border-solid border-black"
+        className="mx-4 my-2 pl-2 rounded-md border border-solid border-black"
         value={searchText}
         onChange={(e) => {
           setSearchText(e.target.value);
@@ -89,6 +93,9 @@ const Body = () => {
       >
         Restaurants above 4.0 rating
       </button>
+      &nbsp;
+      <label className="ml-4 my-2 pl-2 ">User Name : </label>
+      <input className="mx-2 my-2 pl-2 rounded-md border border-solid border-black"type = "search" placeholder="Type UserName" value={loggedInBy} onChange={(e)=>{setUser(e.target.value);}}></input>
       <div className="flex flex-wrap">
         {filteredRestaurants.map((item) => {
           return <Link key = {item.info.id} to= {"/restaurant/"+ item.info.id}>

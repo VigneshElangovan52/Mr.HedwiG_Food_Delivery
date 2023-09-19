@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 
 const AppName = () => {
@@ -26,6 +27,9 @@ const Header = () => {
   }
 
   const userStatus = useOnlineStatus();
+  const {loggedInBy} = useContext(UserContext);
+
+  console.log(loggedInBy, '12345');
 
   return (
     <div className="flex justify-between bg-pink-100 p-4 rounded-xl border shadow-lg shadow-slate-900 ">
@@ -38,6 +42,7 @@ const Header = () => {
           <li className="items-center p-4"><Link to = "/about">About</Link></li>
           <li className="items-center p-4"><Link to = "/contact">Contact Us</Link></li>
           <li className="items-center p-4">Cart</li>
+          <li className="p-4">User : {loggedInBy}</li>
           <button className = "px-2 rounded-md hover:bg-pink-300 active:bg-slate-200-700 border border-solid border-black font-bold" onClick = {LogInStatus}>{isLoggedIn} {(isLoggedIn === 'Log Out') ? '🔒' : '🔑'}</button>
         </ul>
       </div>
