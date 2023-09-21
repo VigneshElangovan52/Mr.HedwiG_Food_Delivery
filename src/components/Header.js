@@ -41,7 +41,7 @@ const Header = () => {
           <li className="items-center p-4"><Link to = "/instamart">InstaMart</Link></li>
           <li className="items-center p-4"><Link to = "/about">About</Link></li>
           <li className="items-center p-4"><Link to = "/contact">Contact Us</Link></li>
-          <li className="items-center p-4">Cart</li>
+          <li className="items-center p-4">Cart - {0} items</li>
           <li className="p-4">User : {loggedInBy}</li>
           <button className = "px-2 rounded-md hover:bg-pink-300 active:bg-slate-200-700 border border-solid border-black font-bold" onClick = {LogInStatus}>{isLoggedIn} {(isLoggedIn === 'Log Out') ? '🔒' : '🔑'}</button>
         </ul>
