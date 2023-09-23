@@ -27,8 +27,8 @@ const CategoryItems = ({data}) => {
           </div>
           <img className = 'w-32 h-28' src = {CDN_URL + item.card.info.imageId} alt="Unavailable" />
           <div className='pt-3 px-1 space-y-3 w-24'>
-          <button className='bg-black text-white h-6 border-black rounded-md pd-3 px-2' onClick={()=> {addItemHandler(item)}}>Add+</button>
-          <button className='bg-black text-white h-6  border-black rounded-md pd-1 px-2' onClick={()=> {removeItemHandler(item)}}>Remove-</button>
+          <button className='bg-stone-800 text-white h-6 border-black rounded-md pd-3 px-2 hover:bg-black hover:text-white' onClick={()=> {addItemHandler(item)}}>Add+</button>
+          <button className='bg-stone-800 text-white h-6  border-black rounded-md pd-1 px-2  hover:bg-black hover:text-white' onClick={()=> {removeItemHandler(item)}}>Remove-</button>
           </div>
         </div>
       ))}

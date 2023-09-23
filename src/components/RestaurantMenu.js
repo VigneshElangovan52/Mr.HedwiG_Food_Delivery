@@ -39,8 +39,8 @@ const RestaurantMenu = () => {
 
   return (
     <div className="text-center">
-      <div className="my-4 p-2 rounded-lg">
-        <h1 className="font-bold text-2xl my-3">{name}</h1>
+      <div className="my-4 p-2 rounded-lg text-center">
+        <h1 className="font-bold text-lg m-auto my-3 border border-stone-500 rounded-2xl w-1/4 text-center p-2 shadow-md shadow-stone-700">{name}</h1>
         <p className="font-medium">
           {cuisines.join(",")} | {locality}, {lastMileTravelString} | Rated{" "}
           {avgRatingString}
