@@ -94,7 +94,7 @@ const Body = () => {
         Restaurants above 4.0 rating
       </button>
       &nbsp;
-      <label className="ml-4 my-2 pl-2 ">User Name : </label>
+      <label className="ml-4 my-2 pl-2 ">Change User Name : </label>
       <input className="mx-2 my-2 pl-2 rounded-md border border-solid border-black"type = "search" placeholder="Type UserName" value={loggedInBy} onChange={(e)=>{setUser(e.target.value);}}></input>
       <div className="flex flex-wrap">
         {filteredRestaurants.map((item) => {
