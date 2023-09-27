@@ -6,10 +6,10 @@ const Contact = () => (
       <h1 className="font-bold pb-3">Customer Support:</h1>
       <p>Our dedicated customer support team is available to address your inquiries, concerns, and feedback. You can contact us via:</p>
       <ul className="py-3">
-        <li><b>Phone📞:</b> Call our helpline at 7894561238.</li>
-        <li><b>Email📧:</b> Send us an email at support@mrfoodyapp.com.</li>
-        <li><b>Live Chat💬:</b> Visit our website and engage in a live chat session with our support agents.</li>
-      <li><b>Office Address🏢:</b>If you prefer a face-to-face interaction, you can visit our office located at: 1,Downing St,Chennai-14<br /><br /></li>
+        <li className="py-1"><b>Phone📞:</b> Call our helpline at 7894561238.</li>
+        <li className="py-1"><b>Email📧:</b> Send us an email at support@mrfoodyapp.com.</li>
+        <li className="py-1"><b>Live Chat💬:</b> Visit our website and engage in a live chat session with our support agents.</li>
+      <li className="py-1"><b>Office Address🏢:</b>If you prefer a face-to-face interaction, you can visit our office located at: 1,Downing St,Chennai-14<br /><br /></li>
       </ul>
       <p>
         Our team will be delighted to welcome you and address your needs in person. Please note that visits to our office are by appointment only
