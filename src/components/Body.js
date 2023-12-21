@@ -1,10 +1,10 @@
 import RestaurantCard, {isPromoted} from "./RestaurantCard";
 // import restaurantList from "./RestaurantList";
 import { useState, useEffect, useContext } from "react";
-import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import CorsErrorByPass from "./CorsErrorBypass";
 
 
 
@@ -59,7 +59,7 @@ const Body = () => {
 
   if (userStatus === false) return <h1>Oops, seems like you're disconnected! Please check internet connectivity</h1>;
   
-  if(filteredRestaurants.length === 0) return <Shimmer />;
+  if(filteredRestaurants.length === 0) return <CorsErrorByPass />;
 
   // const {id} = filteredRestaurants?.info;
 
