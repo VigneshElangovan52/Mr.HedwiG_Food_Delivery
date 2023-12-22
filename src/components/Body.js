@@ -64,7 +64,7 @@ const Body = () => {
   // const {id} = filteredRestaurants?.info;
 
   return (
-    <div className="parent-div my-2 mx-10">
+    <div className="parent-div my-2">
       <input
         type="search"
         placeholder=" Search for a restaurant "
@@ -96,7 +96,7 @@ const Body = () => {
       &nbsp;
       <label className="ml-4 my-2 pl-2 ">Change User Name : </label>
       <input className="mx-2 my-2 pl-2 rounded-md border border-solid border-black"type = "search" placeholder="Type UserName" value={loggedInBy} onChange={(e)=>{setUser(e.target.value);}}></input>
-      <div className="flex flex-wrap mt-3">
+      <div className="flex flex-wrap">
         {filteredRestaurants.map((item) => {
           return <Link key = {item.info.id} to= {"/restaurant/"+ item.info.id}>
             {(item.info.avgRating > "4.0") ? <PromotedRestaurant {...item.info}/> : <RestaurantCard {...item.info} />}
