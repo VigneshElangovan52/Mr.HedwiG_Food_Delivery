@@ -45,15 +45,15 @@ class UserClass extends React.Component{
         //     )
         // }
         return(
-            <div className="bg-stone-400 my-5 border border-solid border-gray-200 w-1/2 h-60 rounded-lg hover:bg-slate-300">
+            <Link to={html_url}><div className="bg-stone-400 my-5 border border-solid border-gray-200 w-1/2 h-60 rounded-lg hover:bg-slate-300">
                 {/* <h2>Count: {count}</h2>
                 <button onClick={onIncrement}>Increment Button</button> */}
                 <img className= "m-1 p-2 w-56 float-left" src = {avatar_url} alt="Display pic"></img>
                 <h1 className="font-bold py-2 mt-2">{name}</h1>
                 <h5 className="font-mono">{location}</h5>
                 <h5 className="whitespace-normal font-serif p-2">{bio}</h5>
-                <Link to={html_url}><h5 className="font-mono underline decoration-indigo-500 font-bold"> GitHub: 👩‍💻{html_url}</h5></Link>
-            </div>
+                <h5 className="font-mono underline decoration-indigo-500 font-bold"> GitHub: 👩‍💻{html_url}</h5>
+            </div></Link>
             );
     };
 }
