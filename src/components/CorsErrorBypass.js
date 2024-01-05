@@ -1,6 +1,6 @@
 import React from "react";
 import Shimmer from "./Shimmer";
-// import corserr from '../assets/cors';
+import cors_img from "../assets/cors_img.gif";
 
 
 const CorsErrorByPass = () => {
@@ -15,7 +15,7 @@ const CorsErrorByPass = () => {
                 <li className="italic underline text-lg font-semibold cursor-pointer" onClick={()=>window.open(cors_url)}>Download this CORS extension from chrome, click here!</li>
                 <li className="text-lg font-semibold">Activate the CORS plugin by clicking on the 'C' icon and reload to see the app running.</li>
             </ul>
-            {/* <img src={corserr} alt="error-img"/> */}
+            <img src={cors_img} className="w-auto" alt="error-img"/>
             <Shimmer />
         </div>
     )
